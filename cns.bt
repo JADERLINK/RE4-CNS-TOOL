@@ -1,0 +1,72 @@
+//------------------------------------------------
+//--- 010 Editor v13.0.2 Binary Template
+//
+//      File: RE4 CNS Parser
+//   Authors: Corey Nguyen (mariokart64n)
+//   Version: 1.0
+//   Purpose: Research / Education
+//  Category: Video Game Engine Mechanics
+// File Mask: *.cns
+//  ID Bytes: 
+//   History: 
+//   1.0   2023-07-15  initial version
+//------------------------------------------------
+
+typedef struct  fmtCNS_Enable {
+    UINT32 enemy    : 1;  
+    UINT32 obj      : 1;  
+    UINT32 esp      : 1;  
+    UINT32 espgen  : 1;  
+    UINT32 ctrl    : 1;  
+    UINT32 light   : 1;  
+    UINT32 parts   : 1;  
+    UINT32 modelinfo : 1; 
+    UINT32 prim    : 1;  
+    UINT32 evt     : 1;  
+    UINT32 sat     : 1;  
+    UINT32 eat     : 1;  
+    UINT32 val13     : 1;
+    UINT32 val14     : 1;
+    UINT32 val15     : 1;
+    UINT32 val16     : 1;
+    UINT32 val17     : 1;
+    UINT32 val18     : 1;
+    UINT32 val19     : 1;
+    UINT32 val20     : 1;
+    UINT32 val21     : 1;
+    UINT32 val22     : 1;
+    UINT32 val23     : 1;
+    UINT32 val24     : 1;
+    UINT32 val25     : 1;
+    UINT32 val26     : 1;
+    UINT32 val27     : 1;
+    UINT32 val28     : 1;
+    UINT32 val29     : 1;
+    UINT32 val30     : 1;
+    UINT32 val31     : 1;
+    UINT32 val32     : 1;
+    } fmtCNS_Enable;
+
+struct fmtCNS {
+
+    uint32 count;
+    fmtCNS_Enable enable;
+    
+    if (count >  0) uint32 enemy_num;
+    if (count >  1) uint32 obj_num;
+    if (count >  2) uint32 esp_num;
+    if (count >  3) uint32 espgen_num;
+    if (count >  4) uint32 ctrl_num;
+    if (count >  5) uint32 light_num;
+    if (count >  6) uint32 parts_num;
+    if (count >  7) uint32 modelinfo_num;
+    if (count >  8) uint32 prim_num;
+    if (count >  9) uint32 evt_num;
+    if (count > 10) uint32 sat_num;
+    if (count > 11) uint32 eat_num;
+    if (count > 12) uint32 value[count - 12];
+
+    uchar padding[(32-(FTell() % 32)) % 32] <format=hex, comment="Padded with 0xCD">;
+    };
+
+fmtCNS cns;

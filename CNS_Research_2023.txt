@@ -1,0 +1,60 @@
+------------------CNS values - Research by AnonymousUser, Zatarita, and Mr.Curious  ------------------
+
+OFFSETS EXPLAINED:
+
+Offset[0..3] is event count
+Offset[4..7] Priority Selector - Selects which offsets to use instead of the exe values. This is essentially a bit mask set of values that are ON/OFF flags for each of the 12 Limits. We can create our own values (off/on) for each of the items in the list with the following table:
+
+START WITH A VALUE OF 0:
+
+Add to value depending on what you want to select (HEX). THe values in the left column are the addresses seen in the list below this table:
+
+8: +1
+C: +2
+10: +4
+14: +8
+1C: +10
+20: +20
+24: +40
+28: +80
+2C: +100
+30: +200
+34: +400
+
+To turn on ALL the bit flags on we use a value of 7FF (HEX) = 2047 (DEC)
+
+So for example, if you want to select 8, C and 1C, you do 1+2+10 (bit mask value). This value goes at Offset[4..7]. So in example r404 hwe have E7 05 (which is reversed Endian to 5E7. Convert this to binary and we get: 010111100111. These values go from the last to first
+
+Here is the list of offsets in the CNS file (there was one item missing in Zataritas original list, which is marked as unknown for now). We are using r404 CNS for this example:
+
+000008 - ENEMY NUM ------(enemy_limit) : 60
+00000C - OBJ NUM --------(object_limit) : 200
+000010 - ESP NUM --------(effect_memory_limit): 1300
+000014 - ESPGEN NUM -----(effect_spawn_limit) : 0
+000018 - CTRL NUM -------(control_limit) : 0
+00001C - LIGHT NUM ------(light_limit): 50
+000020 - PARTS NUM ------(bones_limit): 3300 (amount of bones allowed on screen at one time)
+000024 - MODEL INFO NUM -(model_info_limit) : 500
+000028 - PRIM NUM -------(primitive_limit) : 589824 (unit 32 bits)
+00002C - EVT NUM --------(event_limit) : 0
+000030 - SAT NUM --------(SAT_limit) : 10
+000034 - EAT NUM --------(EAT_limit) : 0 
+
+A value of 0 means that the exe values are used instead, regardless of Priority Selector choice)
+
+As you can see all the entries with 0 correspond to the values in the bitmask binary value of 010111100111 (remember it is last to first). 
+
+Default values in the EXE:
+
+7F9A44 - ENEMY NUM ------(enemy_limit) : 60
+7F9A48 - OBJ NUM --------(object_limit) : 200
+7F9A4C - ESP NUM --------(effect_limit) : 1024
+7F9A50 - ESPGEN NUM -----(effect_spawn_limit) : 256
+7F9A54 - CTRL NUM -------(control_limit) : 10
+7F9A58 - LIGHT NUM ------(light_limit) : 100
+7F9A5C - PARTS NUM ------(bones_limit) : 1300
+7F9A60 - MODEL INFO NUM -(model_info_limit) : 300
+7F9A64 - PRIM NUM -------(primitive_limit) : 655360
+7F9A68 - EVT NUM --------(event_limit) : 10
+7F9A6C - SAT NUM --------(SAT_limit) : 30
+7F9A70 - EAT NUM --------(EAT_limit): 30

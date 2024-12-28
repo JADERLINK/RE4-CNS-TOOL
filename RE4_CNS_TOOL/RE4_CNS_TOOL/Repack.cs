@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.IO;
+using SimpleEndianBinaryIO;
 
 namespace RE4_CNS_TOOL
 {
     internal static class Repack
     {
-        public static void RepackFile(string file)
+        public static void RepackFile(string file, Endianness endianness)
         {
             StreamReader idx = null;
             FileInfo fileInfo = new FileInfo(file);
-            string baseName = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
+            string baseName = Path.GetFileNameWithoutExtension(fileInfo.Name);
             string baseDiretory = fileInfo.DirectoryName;
 
             try
@@ -79,10 +80,10 @@ namespace RE4_CNS_TOOL
                 }
                 idx.Close();
 
-                BinaryWriter cns = null;
+                EndianBinaryWriter cns = null;
                 try
                 {
-                    cns = new BinaryWriter(new FileInfo(baseDiretory + "\\" + baseName + ".CNS").Create(), Encoding.GetEncoding(1252));
+                    cns = new EndianBinaryWriter(new FileInfo(Path.Combine(baseDiretory, baseName + ".CNS")).Create(), Encoding.GetEncoding(1252), endianness);
                 }
                 catch (Exception ex)
                 {

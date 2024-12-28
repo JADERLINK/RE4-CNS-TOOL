@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using SimpleEndianBinaryIO;
 
 namespace RE4_CNS_TOOL
 {
     internal static class Extract
     {
-        public static void ExtractFile(string file)
+        public static void ExtractFile(string file, Endianness endianness)
         {
             FileInfo fileInfo = new FileInfo(file);
           
-            var cns = new BinaryReader(fileInfo.OpenRead());
+            var cns = new EndianBinaryReader(fileInfo.OpenRead(), endianness);
             uint Amount = cns.ReadUInt32();
             uint flags = cns.ReadUInt32();
 

@@ -1,5 +1,5 @@
 # RE4-CNS-TOOL
-Extract and repack RE4 CNS files (RE4 ubisoft/2007/steam/uhd/Ps2)
+Extract and repack RE4 CNS files (RE4 2007/PS2/UHD/PS4/NS/GC/WII/XBOX360)
 
 **Special thanks:**
 <br>*CNS values - Research by AnonymousUser, Zatarita, Mr.Curious, and Mariokart64n*
@@ -9,16 +9,19 @@ Extract and repack RE4 CNS files (RE4 ubisoft/2007/steam/uhd/Ps2)
 Programa destinado a extrair e reempacotar arquivos .CNS
 <br> Ao extrair será gerado um arquivo de extenção .idxcns, ele será usado para o repack.
 
+**Update V.1.1.0**
+<br>Adicionado suporte para as versões GC/WII/XBOX360;
+
 ## Extract
 
 Exemplo:
-<br>RE4_CNS_TOOL.exe "r404_018.CNS"
+<br>RE4_CNS_TOOL_*.exe "r404_018.CNS"
 
-! Ira gerar um arquivo de nome "r404_018.idxcns";
+! Vai gerar um arquivo de nome "r404_018.idxcns";
 
 ## Conteúdo do Arquivo .idxcns
 
-<br>Nota: O conteúdo com // é informativo e não existe no arquivo original.
+Nota: O conteúdo com // é informativo e não existe no arquivo original.
 <br>Nota2: caracteres **# / \\ : !** São usados para comentários.
 
 ```
@@ -63,11 +66,16 @@ EAT_NUM:0
 ## Repack
 
 Exemplo:
-<br>RE4_CNS_TOOL.exe "r404_018.idxcns"
+<br>RE4_CNS_TOOL_*.exe "r404_018.idxcns"
 
-! No arquivo .idxcns vai conter o conteudo que sei colocados no CNS;
+! No arquivo .idxcns vai conter o conteúdo que sei colocados no CNS;
 <br>! No arquivo .idxcns as linhas iniciadas com um dos caracteres **# / \\ : !** são consideradas comentários;
-<br>! O nome do arquivo gerado é o mesmo nome do idxcns, mas com a extenção .CNS;
+<br>! O nome do arquivo gerado é o mesmo nome do .idxcns, mas com a extenção .CNS;
+
+## BIG_ENDIAN vs LITTLE_ENDIAN
+
+! Para as versões "GC/WII/XBOX360" use a tool de nome BIG_ENDIAN;
+<br>! Para as versões "2007/PS2/UHD/PS4/NS" use a tool de nome LITTLE_ENDIAN;
 
 **At.te: JADERLINK**
-<br>2024-07-03
+<br>2024-12-27
